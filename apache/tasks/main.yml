@@ -1,0 +1,20 @@
+---
+
+- name: "install nodejs , pm2" 
+  become: true
+  apt:
+    name : [nodejs , pm2]
+    state : latest
+    update_cache : yes
+  
+- name: "install index.js" 
+  become: true
+  copy:
+    src : index.js
+    dest : ~/index.js
+    backup : yes
+
+- name: "shell"
+  shell: pm2 start ~/index.js -f
+  
+
